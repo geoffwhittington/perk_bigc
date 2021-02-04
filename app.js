@@ -18,6 +18,7 @@ var usersRouter = require("./routes/users");
 var auth = require("./routes/auth");
 var load = require("./routes/load");
 var uninstall = require("./routes/uninstall");
+var webhooks = require("./routes/webhooks");
 // ========================================================
 
 var app = express();
@@ -34,8 +35,9 @@ app.use("/users", usersRouter);
 app.use("/auth", auth);
 app.use("/load", load);
 app.use("/uninstall", uninstall);
+app.use("/webhooks", webhooks);
 // ========================================================
 
-var listener = app.listen(8080, function() {
+var listener = app.listen(8080, function () {
   console.log("Listening on port " + listener.address().port);
 });
