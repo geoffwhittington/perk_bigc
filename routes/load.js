@@ -23,19 +23,17 @@ router.get("/", (req, res, next) => {
       res.send("Hello World. The time is " + data.timestamp);
     }
 
-    console.log(process.env.webhook);
     const hook = {
       scope: "store/subscriber/*",
       destination: process.env.webhook,
       is_active: true
     };
 
-    bigCommerce
-      .post(`/stores/${data.store_hash}/v2/hooks`, hook)
-      .then((data) => {
-        // Catch any errors, or handle the data returned
-        console.log(data);
-      });
+    console.log(data);
+    bigCommerce.post(`${data.context}/v2/hooks`, hook).then((data) => {
+      // Catch any errors, or handle the data returned
+      console.log(data);
+    });
   } catch (err) {}
 });
 
